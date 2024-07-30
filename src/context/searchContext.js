@@ -6,21 +6,39 @@ import {
   useCallback,
 } from "react";
 
-const URL = "https://openlibrary.org/search.json?title=";
+// const URL = "https://openlibrary.org/search.json?title=";
+const URL = `http://localhost:5000/book/bookSearch`;
 
 const SearchContext = createContext({});
 
 const SearchProvider = ({ children }) => {
   // the lost world
-  const [searchInput, setSearchInput] = useState("da vinci code");
+  const [searchInput, setSearchInput] = useState("");
   const [books, setBooks] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [resultTitle, setResultTitle] = useState("");
 
   const getBooks = useCallback(async () => {
     setLoading(true);
     try {
-      const response = await fetch(`${URL}${searchInput}&limit=20`);
+      // const query = {
+      //   bookName: searchInput,
+      // };
+      // const options = {
+      //   method: "GET",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   params: query,
+      // };
+      const response = await fetch(`${URL}?bookName=${searchInput}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        // params: query,
+        // params: searchInput,
+      });
       const data = await response.json();
       const { docs } = data;
       console.log(docs);
@@ -71,6 +89,7 @@ const SearchProvider = ({ children }) => {
         setSearchInput,
         resultTitle,
         setResultTitle,
+        books,
       }}
     >
       {children}
