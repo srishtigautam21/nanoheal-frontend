@@ -55,7 +55,6 @@ const BookDetails = () => {
     setLoading(true);
     getBookDetails();
   }, [id]);
-  console.log(book);
 
   console.log(book);
 

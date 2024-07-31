@@ -7,24 +7,25 @@ import BookDetails from "./components/BookDetails";
 import AuthorDetails from "./components/AuthorDetails";
 import BookList from "./components/BookList";
 import AuthorList from "./components/AuthorList";
-import { NextUIProvider } from "@nextui-org/react";
+// import { NextUIProvider } from "@nextui-org/react";
+// import NavbarComp from "./components/NavbarComp";
 
 function App() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   return (
     <>
-      <NextUIProvider navigate={navigate}>
-        <Routes>
-          <Route path='/' element={<Books />}>
-            <Route path='book' element={<BookList />} />
-            <Route path='/book/:id' element={<BookDetails />} />
-          </Route>
-          <Route path='/author' element={<Author />}>
-            <Route path='authorlist' element={<AuthorList />} />
-            <Route path='/author/authorlist/:id' element={<AuthorDetails />} />
-          </Route>
-        </Routes>
-      </NextUIProvider>
+      <Routes>
+        <Route path='/' element={<Books />}>
+          <Route path='book' element={<BookList />} />
+          <Route path='/book/:id' element={<BookDetails />} />
+        </Route>
+        {/* <Route path='/book/:id' element={<BookDetails />} /> */}
+        <Route path='/author' element={<Author />}>
+          <Route path='authorlist' element={<AuthorList />} />
+          <Route path='/author/authorlist/:id' element={<AuthorDetails />} />
+        </Route>
+        {/* <Route path='/author/authorlist/:id' element={<AuthorDetails />} /> */}
+      </Routes>
     </>
   );
 }

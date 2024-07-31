@@ -19,7 +19,7 @@ const SearchProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [resultTitle, setResultTitle] = useState("");
   const [authors, setAuthors] = useState([]);
-  const [authorSearchInput, setAuthorSearchInput] = useState("helen");
+  const [authorSearchInput, setAuthorSearchInput] = useState("");
 
   const getBooks = useCallback(async () => {
     setLoading(true);
@@ -118,7 +118,7 @@ const SearchProvider = ({ children }) => {
   useEffect(() => {
     if (authorSearchInput) {
       getAuthors();
-    } else {
+    } else if (searchInput) {
       getBooks();
     }
   }, [getBooks, searchInput, authorSearchInput]);

@@ -9,12 +9,12 @@ import { NextUIProvider } from "@nextui-org/react";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    {/* <NextUIProvider> */}
-    <Router>
-      <SearchProvider>
-        <App />
-      </SearchProvider>
-    </Router>
-    {/* </NextUIProvider> */}
+    <NextUIProvider>
+      <Router>
+        <SearchProvider>
+          <App />
+        </SearchProvider>
+      </Router>
+    </NextUIProvider>
   </React.StrictMode>
 );

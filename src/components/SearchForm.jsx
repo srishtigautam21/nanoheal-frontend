@@ -39,9 +39,10 @@ const SearchForm = () => {
               className='text-[1rem] w-full outline-none'
               value={input}
               placeholder={
-                isAuthor
-                  ? "Search your favourite authors here"
-                  : "Search your fav books..."
+                // isAuthor
+                //   ? "Search your favourite books/authors here"
+                //   : "Search your fav books..."
+                "Search your favourite books/authors here"
               }
               onKeyDown={(e) => {
                 e.key === "Enter" && handleSubmit();
