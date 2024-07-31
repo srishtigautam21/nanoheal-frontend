@@ -1,96 +1,129 @@
 import React, { useState } from "react";
 import { IconClose, IconGripLines } from "../images/images";
-import {
-  Navbar,
-  NavbarBrand,
-  NavbarContent,
-  NavbarItem,
-  Link,
-  NavbarMenuToggle,
-  NavbarMenu,
-  NavbarMenuItem,
-} from "@nextui-org/react";
+// import {
+//   Navbar,
+//   NavbarBrand,
+//   NavbarContent,
+//   NavbarItem,
+//   Link,
+//   NavbarMenuToggle,
+//   NavbarMenu,
+//   NavbarMenuItem,
+// } from "@nextui-org/react";
+import { Link } from "react-router-dom";
 import books from "../images/books.png";
 
 const NavbarComp = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuItems = ["Books", "Author"];
-
+  console.log(isMenuOpen, "menu");
   return (
-    <Navbar position='static' onMenuOpenChange={setIsMenuOpen}>
-      <NavbarBrand>
-        <Link href='/' className='flex items-center justify-center'>
+    <div className='static flex items-center justify-between w-full p-2'>
+      <div>
+        <Link to='/' className='flex items-center justify-center'>
           <img src={books} alt='book-logo' className=' w-14' />
           <p className='font-bold text-[20px] ml-2'>BookGram</p>
         </Link>
-      </NavbarBrand>
-      <NavbarContent>
-        <NavbarMenuToggle
-          aria-label={isMenuOpen ? "Close menu" : "open menu"}
-          className='sm:hidden'
-        />
-      </NavbarContent>
-      <NavbarContent
-        className='hidden sm:flex sm:justify-between gap-4 sm:gap-7'
-        // justify='end'
-      >
-        <NavbarItem>
-          <Link
-            color='foreground'
-            href='/'
-            className='font-semibold text-[20px]'
-          >
-            Books
-          </Link>
-        </NavbarItem>
-        <NavbarItem isActive>
-          <Link
-            href='/author'
-            aria-current='page'
-            className='font-semibold text-[20px]'
-          >
-            Authors
-          </Link>
-        </NavbarItem>
-        {/* <NavbarItem>
-          <Link color='foreground' href='#'>
-            Integrations
-          </Link>
-        </NavbarItem> */}
-      </NavbarContent>
-      <NavbarMenu>
-        {menuItems.map((item, index) => (
-          <NavbarMenuItem key={`${item}-${index}`}>
-            <Link
-              color='primary'
-              // color={
-              //   index === 2
-              //     ? "primary"
-              //     : index === menuItems.length - 1
-              //     ? "danger"
-              //     : "foreground"
-              // }
-              className='w-full'
-              href='#'
-              size='lg'
-            >
-              {item}
-            </Link>
-          </NavbarMenuItem>
-        ))}
-      </NavbarMenu>
-      {/* </div> */}
-      {/* <NavbarContent justify='end'>
-        <NavbarItem className='hidden lg:flex'>
-          <Link href='#'>Login</Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Button as={Link} color='primary' href='#' variant='flat'>
-            Sign Up
-          </Button>
-        </NavbarItem>
-      </NavbarContent> */}
-    </Navbar>
+      </div>
+      <div className='hidden sm:flex sm:justify-between gap-4 sm:gap-7'>
+        {/* <div> */}
+        <Link color='foreground' to='/' className='font-semibold text-[20px]'>
+          Books
+        </Link>
+        <Link
+          to='/author'
+          aria-current='page'
+          className='font-semibold text-[20px]'
+        >
+          Authors
+        </Link>
+      </div>
+      <div className='sm:hidden relative'>
+        {isMenuOpen ? (
+          <>
+            <div className='hover:cursor-pointer'>
+              <IconGripLines onClick={() => setIsMenuOpen(!isMenuOpen)} />
+            </div>
+            <div className='z-50 absolute top-6 right-1 bg-white p-3 flex flex-col gap-1 pt-6 border-1 rounded-md w-24 h-24'>
+              {menuItems.map((item, index) => (
+                <div key={`${item}-${index}`}>
+                  <Link
+                    color='primary'
+                    className='w-full p-2 hover:bg-yellow-100'
+                    to={index === 0 ? "/" : "/author"}
+                  >
+                    {item}
+                  </Link>
+                </div>
+              ))}
+              <IconClose
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className='absolute top-2 right-2 hover:cursor-pointer'
+              />
+            </div>
+          </>
+        ) : (
+          <div className='hover:cursor-pointer'>
+            <IconGripLines onClick={() => setIsMenuOpen(!isMenuOpen)} />
+          </div>
+        )}
+      </div>
+    </div>
+    // <Navbar
+    //   position='static'
+    //   onMenuOpenChange={() => setIsMenuOpen(!isMenuOpen)}
+    // >
+    //   <NavbarBrand>
+    //     <Link href='/' className='flex items-center justify-center'>
+    //       <img src={books} alt='book-logo' className=' w-14' />
+    //       <p className='font-bold text-[20px] ml-2'>BookGram</p>
+    //     </Link>
+    //   </NavbarBrand>
+    //   <NavbarContent>
+    //     <NavbarMenuToggle
+    //       aria-label={isMenuOpen ? "Close menu" : "open menu"}
+    //       className='sm:hidden'
+    //     />
+    //     <NavbarMenu>
+    //       {menuItems.map((item, index) => (
+    //         <NavbarMenuItem key={`${item}-${index}`}>
+    //           <Link
+    //             color='primary'
+    //             className='w-full'
+    //             href={index === 0 ? "/" : "/author"}
+    //             size='lg'
+    //           >
+    //             {item}
+    //           </Link>
+    //         </NavbarMenuItem>
+    //       ))}
+    //     </NavbarMenu>
+    //   </NavbarContent>
+    //   <NavbarContent
+    //     className='hidden sm:flex sm:justify-between gap-4 sm:gap-7'
+    //     // justify='end'
+    //   >
+    //     <NavbarItem>
+    //       <Link
+    //         color='foreground'
+    //         href='/'
+    //         className='font-semibold text-[20px]'
+    //       >
+    //         Books
+    //       </Link>
+    //     </NavbarItem>
+    //     <NavbarItem isActive>
+    //       <Link
+    //         href='/author'
+    //         aria-current='page'
+    //         className='font-semibold text-[20px]'
+    //       >
+    //         Authors
+    //       </Link>
+    //     </NavbarItem>
+    //   </NavbarContent>
+
+    // </Navbar>
   );
 };
 

@@ -14,7 +14,7 @@ const Header = () => {
         <NavbarComp />
       </div>
       <div className='flex flex-col items-center justify-center min-h-[90vh]  bg-no-repeat bg-cover bg-library opacity-90'>
-        <h1 className='font-poppins text-center text-slate-700 font-bold text-[40px]'>
+        <h1 className='font-poppins text-center text-slate-700 font-bold text-[25px] sm:text-[40px]'>
           {/* {!isAuthor ? "Find the book of your choice" : "Find your fav Books & Authors"} */}
           Find your fav Books & Authors
         </h1>
