@@ -5,21 +5,27 @@ import { useSearch } from "../context/searchContext";
 
 const SearchForm = () => {
   const { pathname } = useLocation();
-  const { setSearchInput, setResultTitle } = useSearch();
+  const { setSearchInput, setResultTitle, setAuthorSearchInput } = useSearch();
   const [input, setInput] = useState("");
   const navigate = useNavigate();
+  let isAuthor = pathname === "/author" || pathname === "/author/authorlist";
 
   const handleSubmit = () => {
     let tempSearchTerm = input.trim();
     // tempSearchTerm.replace(/[^\w\s]/gi, "").length === 0
     if (tempSearchTerm === "") {
-      setSearchInput("da vinci code");
+      // setSearchInput("da vinci code");
+      setSearchInput("");
       console.log("bcjwkcj");
       setResultTitle("Please Enter Something ...");
+    } else if (isAuthor) {
+      setAuthorSearchInput(input);
+      navigate("/author/authorlist");
     } else {
       setSearchInput(input);
+      navigate("/book");
     }
-    navigate("/book");
+
     setInput("");
   };
 
@@ -33,7 +39,7 @@ const SearchForm = () => {
               className='text-[1rem] w-full outline-none'
               value={input}
               placeholder={
-                pathname === "/author"
+                isAuthor
                   ? "Search your favourite authors here"
                   : "Search your fav books..."
               }

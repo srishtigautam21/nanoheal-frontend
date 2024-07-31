@@ -6,6 +6,7 @@ import Author from "./pages/Author/Author";
 import BookDetails from "./components/BookDetails";
 import AuthorDetails from "./components/AuthorDetails";
 import BookList from "./components/BookList";
+import AuthorList from "./components/AuthorList";
 import { NextUIProvider } from "@nextui-org/react";
 
 function App() {
@@ -18,8 +19,9 @@ function App() {
             <Route path='book' element={<BookList />} />
             <Route path='/book/:id' element={<BookDetails />} />
           </Route>
-          <Route path='author' element={<Author />}>
-            <Route path='/author/:id' element={<AuthorDetails />} />
+          <Route path='/author' element={<Author />}>
+            <Route path='authorlist' element={<AuthorList />} />
+            <Route path='/author/authorlist/:id' element={<AuthorDetails />} />
           </Route>
         </Routes>
       </NextUIProvider>

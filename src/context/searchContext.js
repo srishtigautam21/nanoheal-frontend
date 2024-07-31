@@ -8,6 +8,8 @@ import {
 
 // const URL = `http://localhost:5000/book/bookSearch`;
 const URL = `https://nanoheal-backend.vercel.app/book/bookSearch`;
+const AUTHOR_URL = `https://nanoheal-backend.vercel.app/author/authorSearch`;
+// const AUTHOR_URL = `http://localhost:5000/author/authorSearch`;
 
 const SearchContext = createContext({});
 
@@ -16,27 +18,17 @@ const SearchProvider = ({ children }) => {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
   const [resultTitle, setResultTitle] = useState("");
+  const [authors, setAuthors] = useState([]);
+  const [authorSearchInput, setAuthorSearchInput] = useState("helen");
 
   const getBooks = useCallback(async () => {
     setLoading(true);
     try {
-      // const query = {
-      //   bookName: searchInput,
-      // };
-      // const options = {
-      //   method: "GET",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   params: query,
-      // };
       const response = await fetch(`${URL}?bookName=${searchInput}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
         },
-        // params: query,
-        // params: searchInput,
       });
       const data = await response.json();
       const { docs } = data;
@@ -77,9 +69,60 @@ const SearchProvider = ({ children }) => {
     }
   }, [searchInput]);
 
+  const getAuthors = useCallback(async () => {
+    setLoading(true);
+    try {
+      const response = await fetch(
+        `${AUTHOR_URL}?authorName=${authorSearchInput}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const data = await response.json();
+      const { docs } = data;
+      console.log(data, "in context");
+      if (docs) {
+        let newAuthor = docs.map((singleAuthor) => {
+          const { key, name, top_subjects, top_work, work_count } =
+            singleAuthor;
+          return {
+            id: key,
+            name: name,
+            subjects: top_subjects,
+            top_work: top_work,
+            work_count: work_count,
+          };
+        });
+        setAuthors(newAuthor);
+        if (newAuthor.length > 1) {
+          setResultTitle("Your Search Result");
+        } else {
+          setResultTitle("No Search result found!");
+        }
+        console.log(newAuthor, "docs", docs);
+      } else {
+        setBooks([]);
+        setResultTitle("No Search result found!");
+      }
+
+      setLoading(false);
+    } catch (e) {
+      console.log(e);
+      setLoading(false);
+    }
+  }, [authorSearchInput]);
+
   useEffect(() => {
-    getBooks();
-  }, [getBooks, searchInput]);
+    if (authorSearchInput) {
+      getAuthors();
+    } else {
+      getBooks();
+    }
+  }, [getBooks, searchInput, authorSearchInput]);
+
   return (
     <SearchContext.Provider
       value={{
@@ -89,6 +132,9 @@ const SearchProvider = ({ children }) => {
         resultTitle,
         setResultTitle,
         books,
+        authorSearchInput,
+        setAuthorSearchInput,
+        authors,
       }}
     >
       {children}
