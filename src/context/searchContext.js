@@ -6,10 +6,8 @@ import {
   useCallback,
 } from "react";
 
-// const URL = `http://localhost:5000/book/bookSearch`;
 const URL = `https://nanoheal-backend.vercel.app/book/bookSearch`;
 const AUTHOR_URL = `https://nanoheal-backend.vercel.app/author/authorSearch`;
-// const AUTHOR_URL = `http://localhost:5000/author/authorSearch`;
 
 const SearchContext = createContext({});
 
@@ -32,7 +30,6 @@ const SearchProvider = ({ children }) => {
       });
       const data = await response.json();
       const { docs } = data;
-      console.log(docs);
       if (docs) {
         const newBooks = docs.map((book) => {
           const {
@@ -83,7 +80,6 @@ const SearchProvider = ({ children }) => {
       );
       const data = await response.json();
       const { docs } = data;
-      console.log(data, "in context");
       if (docs) {
         let newAuthor = docs.map((singleAuthor) => {
           const { key, name, top_subjects, top_work, work_count } =
@@ -102,7 +98,6 @@ const SearchProvider = ({ children }) => {
         } else {
           setResultTitle("No Search result found!");
         }
-        console.log(newAuthor, "docs", docs);
       } else {
         setBooks([]);
         setResultTitle("No Search result found!");
@@ -110,7 +105,7 @@ const SearchProvider = ({ children }) => {
 
       setLoading(false);
     } catch (e) {
-      console.log(e);
+      console.error(e);
       setLoading(false);
     }
   }, [authorSearchInput]);

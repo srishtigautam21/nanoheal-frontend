@@ -12,11 +12,8 @@ const SearchForm = () => {
 
   const handleSubmit = () => {
     let tempSearchTerm = input.trim();
-    // tempSearchTerm.replace(/[^\w\s]/gi, "").length === 0
     if (tempSearchTerm === "") {
-      // setSearchInput("da vinci code");
       setSearchInput("");
-      console.log("bcjwkcj");
       setResultTitle("Please Enter Something ...");
     } else if (isAuthor) {
       setAuthorSearchInput(input);
@@ -42,7 +39,6 @@ const SearchForm = () => {
           onChange={(e) => setInput(e.target.value)}
           autoFocus
         />
-
         <button
           type='submit'
           className='flex flex-c'

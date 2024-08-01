@@ -4,11 +4,8 @@ import Loader from "./Loader";
 import coverImg from "../images/coverImg.jpg";
 import BookCard from "./BookCard";
 
-//https://covers.openlibrary.org/b/id/240727-S.jpg
-
 const BookList = () => {
   const { books, loading, resultTitle } = useSearch();
-  console.log(loading);
   const bookCovers = books.map((singleBook) => {
     return {
       ...singleBook,
@@ -19,7 +16,7 @@ const BookList = () => {
         : coverImg,
     };
   });
-  console.log(bookCovers, "bhbgiu");
+
   if (loading) return <Loader />;
   return (
     <section className='py-[3rem] bg-[#f8f9fa]'>
@@ -34,28 +31,6 @@ const BookList = () => {
         </div>
       </div>
     </section>
-    // <div class>
-    //   {
-
-    //     books?.map((singleBook) => {
-    //       const {
-    //         id,
-    //         author,
-    //         cover_id,
-    //         edition_count,
-    //         first_publish_year,
-    //         title,
-    //       } = singleBook;
-    //       return (
-    //         <div key={id}>
-    //           <img src={bookCovers} alt='bookcover' />
-    //           <div>{author}</div>
-    //           <div>{title}</div>
-    //         </div>
-    //       );
-    //     })
-    //   }
-    // </div>
   );
 };
 

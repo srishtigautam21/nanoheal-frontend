@@ -5,11 +5,7 @@ import authorImg from "../images/author-photo-not-found.jpg";
 import { IconArrowLeft } from "../images/images";
 import { useImageSize } from "react-image-size";
 
-// const URL = "http://localhost:5000/book/bookdetail";
-// const URL = `https://nanoheal-backend.vercel.app/book/bookdetail`;
-// const URL = `https://openlibrary.org/authors/`;
 const URL = "https://nanoheal-backend.vercel.app/author/authordetail";
-// const WORKS_URL = `https://openlibrary.org/authors/`;
 
 const AuthorDetails = () => {
   const { id } = useParams();
@@ -19,29 +15,18 @@ const AuthorDetails = () => {
   const [dimensions] = useImageSize(
     `https://covers.openlibrary.org/a/olid/${id}-L.jpg`
   );
+
   let width = dimensions?.width;
   let height = dimensions?.height;
-  console.log(width, height, "img");
   let imgAvailable = width > 1 && height > 1;
 
   const getAuthorDetails = async () => {
     try {
       const response = await fetch(`${URL}?authorId=${id}`);
       const authorData = await response.json();
-      // const workResponse = await fetch(`${URL}?authorId=${id}`);
-      // const workData = await workResponse.json();
-      // if(workData){
-      //   workData?.entries
-      //             ? workData?.entries.map((work) => {
-      //                 return <li className='list-decimal'>{work.title}</li>;
-      //               })
-      // }
-      console.log(authorData, "data");
       if (authorData) {
         const { data, workData } = authorData;
         const { bio, name, birth_date, death_date } = data;
-
-        console.log("inside if data");
         const authorDetail = {
           bio:
             typeof bio !== "object"
@@ -50,9 +35,7 @@ const AuthorDetails = () => {
               ? bio.value
               : "No Bio found",
           name: name,
-          cover_img: imgAvailable
-            ? `https://covers.openlibrary.org/a/olid/${id}-L.jpg`
-            : authorImg,
+          cover_img: `https://covers.openlibrary.org/a/olid/${id}-L.jpg`,
           birth_date: birth_date ? birth_date : "No birth date found",
           death_date: death_date ? death_date : "No date of death found",
           works: workData?.entries ? workData?.entries : "No work found",
@@ -73,8 +56,6 @@ const AuthorDetails = () => {
     getAuthorDetails();
   }, [id]);
 
-  console.log(author, "uiop 50");
-
   if (loading) return <Loader />;
 
   return (
@@ -92,7 +73,7 @@ const AuthorDetails = () => {
         <div className='grid md:grid-cols-[40%,60%] gap-9 mr-auto ml-auto'>
           <div className='overflow-hidden ml-auto mr-auto'>
             <img
-              src={author?.cover_img}
+              src={imgAvailable ? author?.cover_img : authorImg}
               alt='cover img'
               className=' max-w-[220px] md:max-h-[500px] md:max-w-[350px] w-[100%] object-cover'
             />

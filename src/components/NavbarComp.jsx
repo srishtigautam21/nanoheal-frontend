@@ -1,22 +1,11 @@
 import React, { useState } from "react";
 import { IconClose, IconGripLines } from "../images/images";
-// import {
-//   Navbar,
-//   NavbarBrand,
-//   NavbarContent,
-//   NavbarItem,
-//   Link,
-//   NavbarMenuToggle,
-//   NavbarMenu,
-//   NavbarMenuItem,
-// } from "@nextui-org/react";
 import { Link } from "react-router-dom";
 import books from "../images/books.png";
 
 const NavbarComp = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuItems = ["Books", "Author"];
-  console.log(isMenuOpen, "menu");
   return (
     <div className='static flex items-center justify-between w-full p-2'>
       <div>
@@ -26,7 +15,6 @@ const NavbarComp = () => {
         </Link>
       </div>
       <div className='hidden sm:flex sm:justify-between gap-4 sm:gap-7'>
-        {/* <div> */}
         <Link color='foreground' to='/' className='font-semibold text-[20px]'>
           Books
         </Link>
@@ -69,61 +57,6 @@ const NavbarComp = () => {
         )}
       </div>
     </div>
-    // <Navbar
-    //   position='static'
-    //   onMenuOpenChange={() => setIsMenuOpen(!isMenuOpen)}
-    // >
-    //   <NavbarBrand>
-    //     <Link href='/' className='flex items-center justify-center'>
-    //       <img src={books} alt='book-logo' className=' w-14' />
-    //       <p className='font-bold text-[20px] ml-2'>BookGram</p>
-    //     </Link>
-    //   </NavbarBrand>
-    //   <NavbarContent>
-    //     <NavbarMenuToggle
-    //       aria-label={isMenuOpen ? "Close menu" : "open menu"}
-    //       className='sm:hidden'
-    //     />
-    //     <NavbarMenu>
-    //       {menuItems.map((item, index) => (
-    //         <NavbarMenuItem key={`${item}-${index}`}>
-    //           <Link
-    //             color='primary'
-    //             className='w-full'
-    //             href={index === 0 ? "/" : "/author"}
-    //             size='lg'
-    //           >
-    //             {item}
-    //           </Link>
-    //         </NavbarMenuItem>
-    //       ))}
-    //     </NavbarMenu>
-    //   </NavbarContent>
-    //   <NavbarContent
-    //     className='hidden sm:flex sm:justify-between gap-4 sm:gap-7'
-    //     // justify='end'
-    //   >
-    //     <NavbarItem>
-    //       <Link
-    //         color='foreground'
-    //         href='/'
-    //         className='font-semibold text-[20px]'
-    //       >
-    //         Books
-    //       </Link>
-    //     </NavbarItem>
-    //     <NavbarItem isActive>
-    //       <Link
-    //         href='/author'
-    //         aria-current='page'
-    //         className='font-semibold text-[20px]'
-    //       >
-    //         Authors
-    //       </Link>
-    //     </NavbarItem>
-    //   </NavbarContent>
-
-    // </Navbar>
   );
 };
 

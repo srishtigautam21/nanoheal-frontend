@@ -7,11 +7,8 @@ import BookDetails from "./components/BookDetails";
 import AuthorDetails from "./components/AuthorDetails";
 import BookList from "./components/BookList";
 import AuthorList from "./components/AuthorList";
-// import { NextUIProvider } from "@nextui-org/react";
-// import NavbarComp from "./components/NavbarComp";
 
 function App() {
-  // const navigate = useNavigate();
   return (
     <>
       <Routes>
@@ -19,12 +16,11 @@ function App() {
           <Route path='book' element={<BookList />} />
           <Route path='/book/:id' element={<BookDetails />} />
         </Route>
-        {/* <Route path='/book/:id' element={<BookDetails />} /> */}
+
         <Route path='/author' element={<Author />}>
           <Route path='authorlist' element={<AuthorList />} />
           <Route path='/author/authorlist/:id' element={<AuthorDetails />} />
         </Route>
-        {/* <Route path='/author/authorlist/:id' element={<AuthorDetails />} /> */}
       </Routes>
     </>
   );

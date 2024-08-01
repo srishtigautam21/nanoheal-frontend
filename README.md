@@ -10,10 +10,10 @@ This project is a web application built using the ReactJs library and NextUI. It
 
 ### Features
 
-1. A list of books based on a search query from the Open Library API :
-2. Details for a specific book from the Open Library API.
-3. A a list of authors based on a search query from the Open Library API.
-4. A details for a specific author from the Open Library API.
+1. A list of books based on a search query from the express server (nanoheal-backend)
+2. Details for a specific book from the express server.
+3. A a list of authors based on a search query from the express server .
+4. A details for a specific author from the express server .
 5. Responsive
 
 ### Working
@@ -32,6 +32,7 @@ This project is a web application built using the ReactJs library and NextUI. It
 ##
 
     git clone https://github.com/srishtigautam21/nanoheal-frontend.git
+    cd nanoheal-frontend
 
 - Install Dependencies:
 

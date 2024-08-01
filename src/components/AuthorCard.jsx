@@ -4,14 +4,10 @@ import authorImg from "../images/author-photo-not-found.jpg";
 import { useImageSize } from "react-image-size";
 
 const AuthorCard = (author) => {
-  console.log(author, "author-info");
-
   const [dimensions] = useImageSize(author.cover_img);
   let width = dimensions?.width;
   let height = dimensions?.height;
-  console.log(width, height, "img");
   let imgAvailable = width > 1 && height > 1;
-  console.log(imgAvailable, "img available");
 
   return (
     <div className='px-[1rem] py-[2rem] rounded-md bg-white shadow-lg flex flex-col justify-between hover:shadow-2xl'>
@@ -24,12 +20,9 @@ const AuthorCard = (author) => {
           />
         </div>
         <div className='mt-[2rem] text-center'>
-          {/* <Link to={`/author/${author.id}`} {...author}> */}
           <div className='leading-[1.4] mb-[0.8rem] font-bold text-[18px]'>
             <span>{author?.name}</span>
           </div>
-          {/* </Link> */}
-
           <div className='leading-[1.4] mb-[4px] text-[15px]'>
             <span className='font-bold'>Top work: </span>
             <span>{author?.top_work}</span>

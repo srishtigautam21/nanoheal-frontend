@@ -4,22 +4,17 @@ import Loader from "./Loader";
 import authorImg from "../images/author-photo-not-found.jpg";
 import AuthorCard from "./AuthorCard";
 
-//https://covers.openlibrary.org/b/id/240727-S.jpg
-
 const AuthorList = () => {
   const { authors, loading, resultTitle } = useSearch();
-  console.log(loading);
   const authorCovers = authors.map((singleAuthor) => {
-    // 14614017
     return {
       ...singleAuthor,
       cover_img: singleAuthor.id
         ? `https://covers.openlibrary.org/a/olid/${singleAuthor.id}-L.jpg`
         : authorImg,
-      //OL2833586A
     };
   });
-  console.log(authorCovers, "bhbgiu");
+
   if (loading) return <Loader />;
   return (
     <div className='py-[3rem] bg-[#f8f9fa]'>
@@ -34,28 +29,6 @@ const AuthorList = () => {
         </div>
       </div>
     </div>
-    // <div class>
-    //   {
-
-    //     books?.map((singleBook) => {
-    //       const {
-    //         id,
-    //         author,
-    //         cover_id,
-    //         edition_count,
-    //         first_publish_year,
-    //         title,
-    //       } = singleBook;
-    //       return (
-    //         <div key={id}>
-    //           <img src={bookCovers} alt='bookcover' />
-    //           <div>{author}</div>
-    //           <div>{title}</div>
-    //         </div>
-    //       );
-    //     })
-    //   }
-    // </div>
   );
 };
 

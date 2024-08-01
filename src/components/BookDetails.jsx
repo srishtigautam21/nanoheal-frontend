@@ -4,7 +4,6 @@ import Loader from "./Loader";
 import coverImg from "../images/coverImg.jpg";
 import { IconArrowLeft } from "../images/images";
 
-// const URL = "http://localhost:5000/book/bookdetail";
 const URL = `https://nanoheal-backend.vercel.app/book/bookdetail`;
 const BookDetails = () => {
   const { id } = useParams();
@@ -16,7 +15,6 @@ const BookDetails = () => {
     try {
       const response = await fetch(`${URL}?bookId=${id}`);
       const data = await response.json();
-      console.log(data);
       if (data) {
         const {
           description,
@@ -55,8 +53,6 @@ const BookDetails = () => {
     setLoading(true);
     getBookDetails();
   }, [id]);
-
-  console.log(book);
 
   if (loading) return <Loader />;
 
