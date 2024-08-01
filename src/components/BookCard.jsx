@@ -13,12 +13,9 @@ const BookCard = (book) => {
           />
         </div>
         <div className='mt-[2rem] text-center'>
-          {/* <Link to={`/book/${book.id}`} {...book}> */}
           <div className='leading-[1.4] mb-[0.8rem] font-bold text-[18px]'>
             <span>{book.title}</span>
           </div>
-          {/* </Link> */}
-
           <div className='leading-[1.4] mb-[4px] text-[15px]'>
             <span className='font-bold'>Author: </span>
             <span>{[book.author].join(", ").toUpperCase()}</span>
