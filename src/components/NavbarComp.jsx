@@ -5,6 +5,7 @@ import books from "../images/books.png";
 
 const NavbarComp = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  //state used for small screens in toggling of menu open & close
   const menuItems = ["Books", "Author"];
   return (
     <div className='static flex items-center justify-between w-full p-2'>

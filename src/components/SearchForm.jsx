@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useState } from "react";
 import { IconSearch } from "../images/images";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useSearch } from "../context/searchContext";
@@ -8,6 +8,7 @@ const SearchForm = () => {
   const { setSearchInput, setResultTitle, setAuthorSearchInput } = useSearch();
   const [input, setInput] = useState("");
   const navigate = useNavigate();
+  // To check if input search is used for bookSearch or authorSearch
   let isAuthor = pathname === "/author" || pathname === "/author/authorlist";
 
   const handleSubmit = () => {

@@ -11,6 +11,8 @@ const BookDetails = () => {
   const [book, setBook] = useState(null);
   const navigate = useNavigate();
 
+  //The func makes an API call to the backend for bookDetails & then stores the response
+  // in a state variable.
   const getBookDetails = async () => {
     try {
       const response = await fetch(`${URL}?bookId=${id}`);

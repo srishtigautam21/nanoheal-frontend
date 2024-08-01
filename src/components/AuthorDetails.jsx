@@ -7,6 +7,8 @@ import { useImageSize } from "react-image-size";
 
 const URL = "https://nanoheal-backend.vercel.app/author/authordetail";
 
+//The func makes an API call to the backend for authorDetails & then stores the response
+// in a state variable.
 const AuthorDetails = () => {
   const { id } = useParams();
   const [loading, setLoading] = useState(false);

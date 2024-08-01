@@ -5,8 +5,9 @@ import {
   createContext,
   useCallback,
 } from "react";
-
+//This url returns an array of objects containing data such title, authorname etc.
 const URL = `https://nanoheal-backend.vercel.app/book/bookSearch`;
+//This Url returns an array of objects containg author data such as name date_of_birth etc.
 const AUTHOR_URL = `https://nanoheal-backend.vercel.app/author/authorSearch`;
 
 const SearchContext = createContext({});
